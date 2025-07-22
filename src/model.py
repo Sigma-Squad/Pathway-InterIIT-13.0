@@ -1,23 +1,34 @@
-import torch
-from langchain_huggingface import HuggingFacePipeline
+import requests
+import json
+from dotenv import dotenv_values
 
 class Model:
-    """ Init any HuggingFace model """
-    def __init__(self, model_id="HuggingFaceTB/SmolLM-135M"):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
-        self.llm = HuggingFacePipeline.from_model_id(
-            model_id=model_id,
-            task="text-generation",
-            pipeline_kwargs={
-                "max_new_tokens": 512,
-                "top_k": 50,
-                "temperature": 0.45,
-            }
-        )
-        
-        # self.llm_engine_hf = ChatHuggingFace(llm=llm)
+    """ Init any OpenRouter model """
+    def __init__(self, model_id="google/gemma-3n-e2b-it:free"):
+        self.model_id = model_id
+        self.api_key = dotenv_values(".env")["OPENROUTER"]
         
     def ask(self, prompt):
         """ Query """
-        return self.llm.invoke(prompt)
+        response = requests.post(
+            url="https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {self.api_key}",
+            },
+            data=json.dumps({
+                "model": self.model_id,
+                "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+                ]
+            })
+        )
+        
+        try:
+            content = response.json()["choices"][0]["message"]["content"]
+            return content
+        except:
+            print("Error:", response.status_code,response.text)
+    

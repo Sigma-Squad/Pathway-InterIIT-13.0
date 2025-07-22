@@ -19,7 +19,7 @@ def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
         2) List down the Information Required to Detect Violations in the privacy policy of Company A.
     Just give the points and do not include question prompt and A:= tag.
     """
-    initial_prompt = f"""Main Task: {prompt}\nBreak this task into a list of smaller subtasks. Give only the names of the smaller subtasks and not any description of that subtask. Just give the subtasks in as least number of points as possible. Give the answer following the pattern given in System Prompts.\n"""
+    initial_prompt = f"""Main Task: {prompt}\nBreak this task into a list of smaller subtasks. Give only the names of the smaller subtasks and not any description of that subtask. Just give the subtasks in as least number of points as possible. Give the answer following the pattern given in System Prompts without the <A:=>.\n"""
 
     thought_process = system_prompt + "\n" + initial_prompt
 
