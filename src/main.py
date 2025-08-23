@@ -35,4 +35,4 @@ if __name__ == "__main__":
     })
     
     end_time = perf_counter()
-    print(f"{end_time - start_time}s")
+    print(f"Response latency: {end_time - start_time}s")
