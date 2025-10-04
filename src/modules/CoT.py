@@ -4,6 +4,8 @@ import time
 
 
 def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
+    print("Breaking down into subtasks...")
+
     prompt = state["input_prompt"]
 
     system_prompt = """
@@ -50,6 +52,6 @@ def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
     # update the subtasks in the PromptState
     all_subtasks = state.get("subtasks", []) + subtasks
 
-    print(subtasks)
+    print("Subtasks: ", subtasks)
 
     return {"subtasks": all_subtasks}

@@ -1,3 +1,5 @@
 pathway/
 **/__pycache__/
 .env
+corrected_scraped_data/
+chromadb

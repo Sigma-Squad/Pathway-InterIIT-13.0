@@ -5,4 +5,5 @@ from typing import TypedDict
 class PromptState(TypedDict):
     input_prompt: str
     subtasks: list[str]  # list of subtasks to do
-    messages: list[str]  # track conversation with LLM
+    rag_response: str  # response from the database retriever
+    webrag_response: str  # response from the web search retriever
