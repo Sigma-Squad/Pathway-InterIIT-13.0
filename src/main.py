@@ -1,9 +1,9 @@
 from .model import Model
-import torch
 from langgraph.graph import StateGraph, START, END
 from .states.PromptState import PromptState
 from .modules.CoT import cot_tasks
 from .modules.database_retriever import DBR
+from .modules.web_retriever import aggregate_and_rank_results
 from functools import partial
 from time import perf_counter
 
@@ -19,12 +19,14 @@ graph = StateGraph(PromptState)
 # Add nodes
 _ = graph.add_node("CoT", cot)
 _ = graph.add_node("DBR", dbr)
+_ = graph.add_node("WebRAG", aggregate_and_rank_results)
 
 # Add edges
-# _ = graph.add_edge(START, "CoT")
-# _ = graph.add_edge("CoT", "DBR")
-_ = graph.add_edge(START, "DBR")
+_ = graph.add_edge(START, "CoT")
+_ = graph.add_edge("CoT", "DBR")
+_ = graph.add_edge("CoT", "WebRAG")
 _ = graph.add_edge("DBR", END)
+_ = graph.add_edge("WebRAG", END)
 
 # Compile the graph
 compiled_graph = graph.compile()
