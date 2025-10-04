@@ -1,8 +1,8 @@
-from sentence_transformer import SentenceTransformer
-from transformers import pipeline
-from typing import List
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
-def encode_texts(texts: List[str], model_name: str = 'all-MiniLM-L6-v2') -> np.ndarray:
+
+def encode_texts(texts: list[str], model_name: str = "all-MiniLM-L6-v2") -> np.ndarray:
     """
     Encode texts into vector embeddings using sentence transformers
     """

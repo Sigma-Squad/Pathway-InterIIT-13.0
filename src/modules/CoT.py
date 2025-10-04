@@ -1,11 +1,12 @@
-from states.PromptState import PromptState
+from ..states.PromptState import PromptState
 
 import time
 
+
 def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
     prompt = state["input_prompt"]
-    
-    system_prompt = f"""
+
+    system_prompt = """
     System Prompts:
     Q:= Compare the privacy policy of 2 companies Company A and Company B.
     A:= 1) Fetch the privacy policy of Company A.
@@ -33,9 +34,10 @@ def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
         modified_prompt = thought_process
         try:
             modified_thought = llm.ask(modified_prompt)
-        except:
+        except Exception:
             time.sleep(wait_time)  # Wait for wait_time seconds before retrying
             modified_thought = llm.ask(modified_prompt)
+
         temp_list = modified_thought.strip().split("\n")
         temp_list = [t_list.strip().lower() for t_list in temp_list if t_list.strip()]
         temp_list_length = len(temp_list)
@@ -44,10 +46,10 @@ def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
             list_length = temp_list_length
         else:
             pass
-        
+
     # update the subtasks in the PromptState
     all_subtasks = state.get("subtasks", []) + subtasks
-    
+
     print(subtasks)
 
-    return { "subtasks": all_subtasks }
+    return {"subtasks": all_subtasks}
