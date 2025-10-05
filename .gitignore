@@ -3,3 +3,4 @@ pathway/
 .env
 corrected_scraped_data/
 chromadb
+storage
