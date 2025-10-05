@@ -187,7 +187,7 @@ with team_col4:
     """)
 
 st.markdown("### Proposed Architecture")
-st.image("./assets/architecture.png", use_column_width=True)
+st.image("./assets/architecture.png", use_container_width=True)
 st.caption(
     "Multi-stage retrieval architecture combining Chain-of-Thought reasoning, database retrieval, web search, and evidence graph generation for comprehensive legal policy question answering. The utility module has not yet been implemented."
 )
