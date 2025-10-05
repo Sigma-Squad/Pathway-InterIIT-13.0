@@ -6,16 +6,16 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.groq import Groq
 from llama_index.core import Settings
 import torch
-from dotenv import dotenv_values
+import os
+from dotenv import load_dotenv
+
+_ = load_dotenv()
 
 # llm = HuggingFaceInferenceAPI(
 #     model_name="mistralai/Mistral-7B-Instruct-v0.2", token=dotenv_values(".env")["HF"]
 # )
 
-llm = Groq(
-    model="llama-3.1-8b-instant",
-    api_key=dotenv_values(".env")["GROQ"],
-)
+llm = Groq(model="llama-3.1-8b-instant", api_key=os.getenv("GROQ"))
 
 embedder = HuggingFaceEmbedding(
     model_name="all-MiniLM-L6-v2",

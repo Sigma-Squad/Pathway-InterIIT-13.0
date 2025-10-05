@@ -1,6 +1,9 @@
 import requests
 import json
-from dotenv import dotenv_values
+import os
+from dotenv import load_dotenv
+
+_ = load_dotenv()
 
 
 class Model:
@@ -8,7 +11,7 @@ class Model:
 
     def __init__(self, model_id="google/gemma-3n-e2b-it:free"):
         self.model_id = model_id
-        self.api_key = dotenv_values(".env")["OPENROUTER"]
+        self.api_key = os.getenv("OPENROUTER")
 
     def ask(self, prompt):
         """Query"""

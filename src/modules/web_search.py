@@ -1,8 +1,12 @@
 import requests
 from urllib.parse import quote
-from dotenv import dotenv_values
+import os
+from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from datetime import datetime
+
+
+_ = load_dotenv()
 
 
 def get_full_text(url, word_limit=1000):
@@ -27,8 +31,8 @@ def get_full_text(url, word_limit=1000):
 
 
 def google_search(query, k=1):
-    google_search_api = dotenv_values(".env")["GOOGLE_SEARCH"]
-    cx = dotenv_values(".env")["cx"]
+    google_search_api = os.getenv("GOOGLE_SEARCH")
+    cx = os.getenv("cx")
 
     try:
         response = requests.get(
@@ -154,7 +158,7 @@ def scrape_reddit(query, k=1):
         querystring = {"query": query_form}
 
         headers = {
-            "x-rapidapi-key": dotenv_values(".env")["x_rapidapi_key"],
+            "x-rapidapi-key": os.getenv("x_rapidapi_key"),
             "x-rapidapi-host": "socialgrep.p.rapidapi.com",
         }
 
