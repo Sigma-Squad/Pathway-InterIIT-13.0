@@ -3,7 +3,7 @@ from ..states.PromptState import PromptState
 import time
 
 
-def cot_tasks(state: PromptState, llm, max_steps=5, wait_time=1, list_length=0):
+def cot_tasks(state: PromptState, llm, max_steps=1, wait_time=1, list_length=0):
     print("Breaking down into subtasks...")
 
     prompt = state["input_prompt"]
