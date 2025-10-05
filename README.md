@@ -1,11 +1,11 @@
-# 🧭 Pathway: Agentic RAG Assistant for Privacy Policy Legal Queries
+# 🧭 Agentic RAG Assistant for Privacy Policy Legal Queries
 
 [**🚀 Try the Deployed App Here**](#) <!-- 🔗 sigmasquad-interiit13-pathway.streamlit.app -->
 
 ---
 
 ## 📘 Overview
-**Pathway** is an **Agentic Retrieval-Augmented Generation (RAG)** application built to assist users in understanding and navigating **online privacy policies**.
+We propose and implement **Agentic Retrieval-Augmented Generation (RAG)** application built to assist users in understanding and navigating **online privacy policies**.
 
 By combining **vector database retrieval**, **web search integration**, and **graph-based reasoning**, Pathway autonomously analyzes legal information from multiple data sources — providing accurate, evidence-grounded responses for privacy-related user queries.
 
