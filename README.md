@@ -1,6 +1,6 @@
 # 🧭 Agentic RAG Assistant for Privacy Policy Legal Queries
 
-[**🚀 Try the Deployed App Here**](#) <!-- 🔗 sigmasquad-interiit13-pathway.streamlit.app -->
+[**🚀 Try the Deployed App Here**](https://sigmasquad-interiit13-pathway.streamlit.app/) <!-- 🔗 sigmasquad-interiit13-pathway.streamlit.app -->
 
 ---
 
